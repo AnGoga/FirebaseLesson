@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "487930281767",
+    "project_id": "fir-lesson-b9697",
+    "storage_bucket": "fir-lesson-b9697.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487930281767:android:fcc3f72d861e84ddf37302",
+        "android_client_info": {
+          "package_name": "com.itschool.firebaselesson"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxPfZ1VtjwvTm-Pogxke-dmCl3kdXYbdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

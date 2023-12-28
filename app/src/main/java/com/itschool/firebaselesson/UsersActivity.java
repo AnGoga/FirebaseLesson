@@ -1,6 +1,7 @@
 package com.itschool.firebaselesson;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.itschool.firebaselesson.databinding.ActivityUsersBinding;
+
+import java.util.List;
 
 public class UsersActivity extends AppCompatActivity {
     private ActivityUsersBinding binding;
@@ -21,7 +24,6 @@ public class UsersActivity extends AppCompatActivity {
 
         initViews();
         initRecyclerView();
-        UserActivityViewModel.getInstance(this, adapter);
     }
 
     private void initViews() {
@@ -33,7 +35,7 @@ public class UsersActivity extends AppCompatActivity {
                 return;
             }
             User user = new User(FirebaseAuth.getInstance().getCurrentUser().getUid(), name, bio);
-            UserActivityViewModel.getInstance(this, adapter).saveUser(user);
+            UserActivityViewModel.getInstance(this).saveUser(user);
         });
     }
 
@@ -41,5 +43,12 @@ public class UsersActivity extends AppCompatActivity {
         adapter = new UserActivityAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        UserActivityViewModel.getInstance(this).getUsersLiveData().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                adapter.update(users);
+            }
+        });
     }
 }
